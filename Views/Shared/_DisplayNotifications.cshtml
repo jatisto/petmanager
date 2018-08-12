@@ -1,0 +1,12 @@
+@model List<Notification>
+
+@foreach(Notification nt in Model){
+    <p class="text-white"><a asp-action="Detail" 
+            asp-controller="Pet" 
+            asp-route-Id="@nt.PetId"
+            asp-route-notificationId="@nt.Id">
+                @nt.NotificationText
+        </a>
+        <hr>
+    </p>
+}

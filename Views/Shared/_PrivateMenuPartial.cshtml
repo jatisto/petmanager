@@ -1,0 +1,27 @@
+@using Microsoft.AspNetCore.Identity
+@using pet_manager.Models
+
+@inject SignInManager<Owner> SignInManager
+@inject UserManager<Owner> UserManager
+
+@if(SignInManager.IsSignedIn(User)){
+    <div class="row">
+        <a class="btn btn-success pull-right add-pet"
+            asp-action="Index"
+            asp-controller="Watchlist">
+            View my watchlists
+            <i class="fa fa-circle-add"></i>
+        </a>
+
+        <a class="btn btn-primary pull-right add-pet"
+            asp-action="New"
+            asp-controller="Pet">
+            Add new pet
+            <i class="fa fa-circle-add"></i>
+        </a>
+    </div>
+} else {
+    <div class="row">
+        <h2>Welcome to the world of pets!. Please register/login to add your pet.</h2>
+    </div>
+}

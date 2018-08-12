@@ -1,0 +1,46 @@
+@model Pet
+
+<form id="pet-form" asp-action="New" method="post">
+    <div class="row">
+        <div asp-validation-summary="All"></div>
+    </div>
+    <input asp-for="@Model.Id" hidden/>
+    <div class="row">
+        <div class="col-md-4 form-group">
+            <label asp-for="@Model.Name"></label>
+            <input asp-for="@Model.Name" class="form-control"/>
+        </div>
+        <div class="col-md-4 form-group">
+            <label asp-for="@Model.Age"></label>
+            <input asp-for="@Model.Age" class="form-control"/>
+        </div>
+        <div class="col-md-4 form-group">
+            <label asp-for="@Model.Color"></label>
+            <input asp-for="@Model.Color" class="form-control"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 form-group">
+            <label asp-for="@Model.Location"></label>
+            <input asp-for="@Model.Location" class="form-control"/>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label asp-for="@Model.Description"></label>
+            <input asp-for="@Model.Description" class="form-control"/>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label id="pick-image">Pick Image</label>
+            <input type="file" name="file" id="file" class="form-control"/>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <button type="submit" class="btn btn-primary btn-block">
+                Save
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,44 @@
+@model List<Pet>
+    
+<hr>
+<div class="row">
+    @{
+        if(Model.Count<=0){
+            <p>No pets found</p>
+        } else {
+            foreach(Pet p in Model){
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            @p.Name
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-8 image-container">
+                                <div class="btn btn-success image-button">
+                                    <img class = "image" src="~/images/@p.ImageUrl" onError="event.preventDefault(); this.src='/images/cat.png';"/>                                    
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                Age: @p.Age
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <a asp-action="Detail" 
+                                asp-controller="Pet" 
+                                asp-route-Id="@p.Id" 
+                                class="btn btn-primary">
+                                Details
+                            </a>
+                            <a asp-action="New" 
+                                asp-controller="Watchlist" 
+                                asp-route-petId="@p.Id" 
+                                class="btn btn-primary">
+                                Add To Watchlist
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    }
+    </div>

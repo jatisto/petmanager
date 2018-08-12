@@ -1,0 +1,55 @@
+@using Microsoft.AspNetCore.Identity
+@using pet_manager.Models
+
+@inject SignInManager<Owner> SignInManager
+@inject UserManager<Owner> UserManager
+
+@if(UserManager.GetUserId(User).Equals(Model.OwnerId)){
+    @if(Model.IsSelling){
+        <p>Your pet is in selling list.</p>
+        <a class="btn btn-danger"
+            asp-action="ToggleToSellingList"
+            asp-controller="Pet"
+            asp-route-Id="@Model.Id">
+            Remove from selling list
+        </a>
+    } else {
+        <a class="btn btn-success"
+            asp-action="ToggleToSellingList"
+            asp-controller="Pet"
+            asp-route-Id="@Model.Id">
+            Add to selling list
+        </a>
+    }
+
+    <a class="btn btn-danger delete" data-controller="Pet" 
+                                            data-action="Delete" 
+                                            data-Id="@Model.Id"
+                                            data-body-message="Are you sure to delete @Model.Name ?"
+                                            data-redirect-url="/home/mypets">Delete Pet</a> 
+}
+@if(!UserManager.GetUserId(User).Equals(Model.OwnerId)){
+    if(Model.IsSelling && !Model.IsLocked){
+       <a class="btn btn-info"
+            asp-action="BuyPet"
+            asp-controller="Pet"
+            asp-route-Id="@Model.Id">
+            Buy
+        </a> 
+    } 
+    
+    @if(Model.IsLocked){
+        <p>This pet is in buying process by someone. Please come later again to check if it is available.</p>
+    }
+}
+
+@if(UserManager.GetUserId(User).Equals(Model.LockedByUserId)){
+    @if(Model.IsLocked){
+        <a class="btn btn-info"
+            asp-action="BuyPet"
+            asp-controller="Pet"
+            asp-route-Id="@Model.Id">
+            Confirm Buying
+        </a> 
+    }
+}

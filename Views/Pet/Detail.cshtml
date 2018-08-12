@@ -1,0 +1,51 @@
+@model Pet
+
+<h2>@Model.Name Details</h2>
+<p>Name: @Model.Name</p>
+<p>Age: @Model.Age</p>
+
+@await Html.PartialAsync("_UserPrivateMenu")
+
+<hr>
+<h2>Pet Histories</h2>
+
+<div class="row">
+		<div class="col-md-12">
+			<table class="table table-hover table-condensed table-bordered">
+				<thead>
+					<tr>
+						<th>
+							#
+						</th>
+						<th>
+							Pet Name
+						</th>
+						<th>
+							Owner Name
+						</th>
+						<th>
+							Owned Date
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+                    @foreach(History ht in ViewBag.histories){
+					<tr class="active">
+                        <td>
+                            #
+                        </td>
+						<td>
+							@ht.Pet.Name
+						</td>
+						<td>
+							@ht.Owner.Name
+						</td>
+						<td>
+							@ht.OwnDate
+						</td>
+					</tr>
+                    }
+				</tbody>
+			</table>
+		</div>
+	</div>

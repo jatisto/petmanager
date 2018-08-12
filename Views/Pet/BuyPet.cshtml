@@ -1,0 +1,15 @@
+<h2>Following are the payment procedures</h2>
+<ul>
+    <li>Deposit {this} amount to {this} bank account.</li>
+    <li>Send me the receipt of your payment</li>
+    <li>Then, you will get the pick up time and location</li>
+    <li>Then, owner will transfer the ownership of pet to you</li>
+</ul>
+<p>Thanks,</p>
+<p>ABC</p>
+
+<h2>If you have done above then you can request Ownership of pet from the seller.</h2>
+<a class="btn btn-danger"
+    asp-action="ConfirmBuying"
+    asp-controller="Pet"
+    asp-route-Id="@ViewBag.Id">Confirm And Request</a>
